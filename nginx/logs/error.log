@@ -1,0 +1,4 @@
+2018/08/29 12:04:56 [error] 8#8: *1 open() "/usr/share/nginx/html/favicon.ico" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "127.0.0.1", referrer: "http://127.0.0.1/"
+2018/08/29 12:28:39 [emerg] 1#1: "location" directive is not allowed here in /etc/nginx/conf.d/default.conf:68
+2018/08/30 09:55:06 [error] 8#8: *2 access forbidden by rule, client: 172.19.0.1, server: docker.magento.loc, request: "GET /test.php HTTP/1.1", host: "127.0.0.1"
+2018/08/30 09:57:27 [error] 8#8: *1 access forbidden by rule, client: 172.19.0.1, server: docker.magento.loc, request: "GET /test.php HTTP/1.1", host: "127.0.0.1"

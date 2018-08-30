@@ -1,0 +1,15 @@
+
+Start-Date: 2018-08-28  14:33:26
+Commandline: apt-get install vim
+Install: vim-common:amd64 (2:8.0.0197-4+deb9u1, automatic), vim-runtime:amd64 (2:8.0.0197-4+deb9u1, automatic), vim:amd64 (2:8.0.0197-4+deb9u1), xxd:amd64 (2:8.0.0197-4+deb9u1, automatic), libgpm2:amd64 (1.20.4-6.2+b1, automatic)
+End-Date: 2018-08-28  14:33:28
+
+Start-Date: 2018-08-29  10:34:42
+Commandline: apt-get install netcat
+Install: netcat:amd64 (1.10-41), netcat-traditional:amd64 (1.10-41+b1, automatic)
+End-Date: 2018-08-29  10:34:42
+
+Start-Date: 2018-08-30  09:46:36
+Commandline: apt-get install mysql-client
+Install: mariadb-common:amd64 (10.1.26-0+deb9u1, automatic), libdbi-perl:amd64 (1.636-1+b1, automatic), mysql-client:amd64 (5.5.9999+default), libaio1:amd64 (0.3.110-3, automatic), readline-common:amd64 (7.0-3, automatic), libterm-readkey-perl:amd64 (2.37-1, automatic), default-mysql-client:amd64 (1.0.2, automatic), mysql-common:amd64 (5.8+1.0.2, automatic), libreadline5:amd64 (5.2+dfsg-3+b1, automatic), libjemalloc1:amd64 (3.6.0-9.1, automatic), mariadb-client-10.1:amd64 (10.1.26-0+deb9u1, automatic), mariadb-client-core-10.1:amd64 (10.1.26-0+deb9u1, automatic), libdbd-mysql-perl:amd64 (4.041-2, automatic), libmariadbclient18:amd64 (10.1.26-0+deb9u1, automatic)
+End-Date: 2018-08-30  09:46:38
