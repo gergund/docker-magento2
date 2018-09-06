@@ -3,7 +3,7 @@ services:
 
   php-fpm:
     build: ./php-fpm/.
-    volumes: ['./code:/var/www/html', './php-fpm/logs:/var/log/']
+    volumes: ['code-data:/var/www/html', './php-fpm/logs:/var/log/']
     links: 
      - mysql
     depends_on:
@@ -13,7 +13,7 @@ services:
     build: ./nginx/.
     ports:
       - "80:80"
-    volumes: ['./code:/var/www/html', './nginx/logs:/var/log/nginx']
+    volumes: ['code-data:/var/www/html', './nginx/logs:/var/log/nginx']
     links:
       - php-fpm
     depends_on:
@@ -32,4 +32,5 @@ services:
 
 volumes:
   db-data: {}
+  code-data: {}
       
