@@ -6,8 +6,10 @@ services:
     volumes: ['code-data:/var/www/html', './php-fpm/logs:/var/log/']
     links: 
      - mysql
+     - redis
     depends_on:
      - mysql
+     - redis
 
   nginx:
     build: ./nginx/.
@@ -29,6 +31,10 @@ services:
     ports:
      - "3306:3306"
     volumes: ['db-data:/var/lib/mysql', './mysql/logs:/var/log']
+
+  redis:
+    build: ./redis/.
+    volumes: ['./redis/logs:/var/log']
 
 volumes:
   db-data: {}

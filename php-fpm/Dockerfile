@@ -37,6 +37,9 @@ RUN git clone https://github.com/magento/magento2.git /var/www/html/
 
 WORKDIR /var/www/html/
 
-RUN composer install && chown -R www-data:www-data pub/static pub/media/ var/ generated/ app/etc/
+RUN composer install && chown -R www-data:www-data pub/static pub/media var generated app/etc
 
-CMD php bin/magento setup:install --db-host=mysql --db-name=magento --db-user=magento --db-password=magento --base-url=http://docker.magento.loc --backend-frontname=admin --admin-user=admin --admin-password=123123qa --admin-email=gergund@gmail.com --admin-firstname=Admin --admin-lastname=Admin --language=en_US --currency=USD --timezone=America/Chicago --skip-db-validation && chown -R root:root /var/www/html/app/etc && php-fpm
+CMD php bin/magento setup:install --db-host=mysql --db-name=magento --db-user=magento --db-password=magento --base-url=http://docker.magento.loc --backend-frontname=admin --admin-user=admin --admin-password=123123qa --admin-email=gergund@gmail.com --admin-firstname=Admin --admin-lastname=Admin --language=en_US --currency=USD --timezone=America/Chicago --skip-db-validation --session-save=redis --session-save-redis-host=redis --cache-backend=redis --cache-backend-redis-server=redis --page-cache=redis --page-cache-redis-server=redis \
+&& chown -R root:root /var/www/html/app/etc \
+&& chown -R www-data:www-data pub/static pub/media var generated \
+&& php-fpm
