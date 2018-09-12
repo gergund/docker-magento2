@@ -13,8 +13,6 @@ services:
 
   nginx:
     build: ./nginx/.
-    ports:
-      - "80:80"
     volumes: ['code-data:/var/www/html', './nginx/logs:/var/log/nginx']
     links:
       - php-fpm
@@ -35,6 +33,16 @@ services:
   redis:
     build: ./redis/.
     volumes: ['./redis/logs:/var/log']
+
+  varnish:
+    build: ./varnish/.
+    ports:
+      - "80:80"
+    volumes: ['./varnish/logs:/var/log']
+    links:
+     - nginx
+    depends_on:
+     - nginx
 
 volumes:
   db-data: {}
