@@ -5,13 +5,13 @@ import std;
 # For SSL offloading, pass the following header in your proxy server or load balancer: 'X-Forwarded-Proto: https'
 
 backend default {
-    .host = "172.18.0.5";
+    .host = "{HOST}";
     .port = "80";
     .first_byte_timeout = 600s;
 }
 
 acl purge {
-    "172.18.0.5";
+    "{HOST}";
 }
 
 sub vcl_recv {
