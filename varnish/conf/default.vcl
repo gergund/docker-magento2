@@ -5,13 +5,13 @@ import std;
 # For SSL offloading, pass the following header in your proxy server or load balancer: 'X-Forwarded-Proto: https'
 
 backend default {
-    .host = "{HOST}";
+    .host = "{VARNISH_BACKEND_HOST}";
     .port = "80";
     .first_byte_timeout = 600s;
 }
 
 acl purge {
-    "{HOST}";
+    "{VARNISH_PURGE_HOST}";
 }
 
 sub vcl_recv {
@@ -92,12 +92,12 @@ sub vcl_recv {
     # Static files caching
     if (req.url ~ "^/(pub/)?(media|static)/") {
         # Static files should not be cached by default
-        return (pass);
+        #return (pass);
 
         # But if you use a few locales and don't use CDN you can enable caching static files by commenting previous line (#return (pass);) and uncommenting next 3 lines
-        #unset req.http.Https;
-        #unset req.http.X-Forwarded-Proto;
-        #unset req.http.Cookie;
+        unset req.http.Https;
+        unset req.http.X-Forwarded-Proto;
+        unset req.http.Cookie;
     }
 
     return (hash);
@@ -170,16 +170,16 @@ sub vcl_backend_response {
 }
 
 sub vcl_deliver {
-    if (resp.http.X-Magento-Debug) {
+    #if (resp.http.X-Magento-Debug) {
         if (resp.http.x-varnish ~ " ") {
             set resp.http.X-Magento-Cache-Debug = "HIT";
             set resp.http.Grace = req.http.grace;
         } else {
             set resp.http.X-Magento-Cache-Debug = "MISS";
         }
-    } else {
-        unset resp.http.Age;
-    }
+    #} else {
+    #    unset resp.http.Age;
+    #}
 
     # Not letting browser to cache non-static files.
     if (resp.http.Cache-Control !~ "private" && req.url !~ "^/(pub/)?(media|static)/") {
@@ -188,13 +188,13 @@ sub vcl_deliver {
         set resp.http.Cache-Control = "no-store, no-cache, must-revalidate, max-age=0";
     }
 
-    unset resp.http.X-Magento-Debug;
-    unset resp.http.X-Magento-Tags;
-    unset resp.http.X-Powered-By;
-    unset resp.http.Server;
-    unset resp.http.X-Varnish;
-    unset resp.http.Via;
-    unset resp.http.Link;
+    #unset resp.http.X-Magento-Debug;
+    #unset resp.http.X-Magento-Tags;
+    #unset resp.http.X-Powered-By;
+    #unset resp.http.Server;
+    #unset resp.http.X-Varnish;
+    #unset resp.http.Via;
+    #unset resp.http.Link;
 }
 
 sub vcl_hit {
